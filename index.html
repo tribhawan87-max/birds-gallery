@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bird Gallery Project</title>
+    <!-- Google Fonts for styling -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" type="text/css">
+
+    <style>
+      /* =====================
+         CSS VARIABLES
+         =====================
+         These define a color palette and font colors
+         which can be reused throughout the website
+         by calling "var(--name)" in styles.
+      */
+      :root {
+        --base-font-color: #333;
+        --secondary-font-color: #555;
+        --emphasised-font: #111;
+
+        --c-background-color: #f9f9f9;
+        --c-background-highlights: #eee;
+
+        --c-yellow: #f1c40f;
+        --c-orange: #e67e22;
+        --c-red: #e74c3c;
+        --c-magenta: #9b59b6;
+        --c-violet: #8e44ad;
+        --c-blue: #3498db;
+        --c-cyan: #1abc9c;
+        --c-green: #2ecc71;
+      }
+
+      /* =====================
+         GLOBAL BODY STYLING
+         =====================
+         - Sets font
+         - Adds maximum width for readability
+         - Sets background color and base text color
+      */
+      body {
+        font-family: "Open Sans Condensed", sans-serif;
+        margin: 0 auto;
+        max-width: 900px;
+        line-height: 1.6;
+        color: var(--base-font-color);
+        background-color: var(--c-background-color);
+      }
+
+      /* =====================
+         HEADER STYLING
+         =====================
+         - Gives the title bar a blue background
+         - White text, centered
+      */
+      header {
+        background: var(--c-blue);
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      /* =====================
+         NAVIGATION BAR
+         =====================
+         - Flexbox layout to separate links & search form
+         - Light gray background
+      */
+      nav {
+        background: var(--c-background-highlights);
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Unordered list in navigation (horizontal menu) */
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      /* Space between navigation menu items */
+      nav ul li {
+        margin: 0 10px;
+      }
+
+      /* Navigation links */
+      nav ul li a {
+        text-decoration: none;
+        color: var(--c-blue);
+        font-weight: bold;
+      }
+
+      /* Hover effect for links */
+      nav ul li a:hover {
+        color: var(--c-orange);
+      }
+
+      /* Search form styles */
+      nav form input[type="search"] {
+        padding: 5px;
+      }
+
+      nav form input[type="submit"] {
+        padding: 5px 10px;
+        background: var(--c-green);
+        border: none;
+        color: white;
+        cursor: pointer;
+      }
+
+      /* =====================
+         MAIN CONTENT LAYOUT
+         =====================
+         - Flexbox divides into two sections:
+           article (main content) and aside (sidebar)
+      */
+      main {
+        display: flex;
+        margin: 20px 0;
+      }
+
+      /* ARTICLE styling (main bird gallery) */
+      article {
+        flex: 3; /* Takes up more space than aside */
+        padding: 20px;
+        border: 2px solid var(--c-cyan);
+        margin-right: 15px;
+      }
+
+      /* Ensure images scale nicely inside article */
+      article img {
+        max-width: 100%;
+        margin-bottom: 10px;
+      }
+
+      /* Buttons for changing birds */
+      article button {
+        margin: 5px;
+        padding: 8px 12px;
+        border: none;
+        cursor: pointer;
+        background: var(--c-yellow);
+        font-weight: bold;
+      }
+
+      /* Button hover effect */
+      article button:hover {
+        background: var(--c-orange);
+        color: white;
+      }
+
+      /* ASIDE section (sidebar) */
+      aside {
+        flex: 1; /* Smaller column */
+        padding: 20px;
+        background: var(--c-background-highlights);
+      }
+
+      /* Sidebar list styling */
+      aside ul {
+        padding-left: 20px;
+      }
+
+      /* Sidebar links */
+      aside ul li a {
+        color: var(--c-red);
+        text-decoration: none;
+      }
+
+      /* Hover effect for sidebar links */
+      aside ul li a:hover {
+        color: var(--c-blue);
+      }
+
+      /* =====================
+         FOOTER STYLING
+         =====================
+         - Blue background with centered white text
+      */
+      footer {
+        background: var(--c-blue);
+        color: white;
+        text-align: center;
+        padding: 15px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =====================
+         HEADER SECTION
+         =====================
+         - Contains the site title
+    -->
+    <header>
+      <h1>Bird Gallery Project</h1>
+    </header>
+
+    <!-- =====================
+         NAVIGATION SECTION
+         =====================
+         - Contains site links + a search bar
+    -->
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+
+      <!-- Simple search form -->
+      <form>
+        <input type="search" name="q" placeholder="Search birds...">
+        <input type="submit" value="Go!">
+      </form>
+    </nav>
+
+    <!-- =====================
+         MAIN CONTENT SECTION
+         =====================
+         - Uses flexbox to divide into:
+           (1) Article (Bird Gallery)
+           (2) Aside (Related links)
+    -->
+    <main>
+      <!-- ARTICLE: Bird Gallery -->
+      <article>
+        <h2>Australian Birds</h2>
+        <!-- Default bird image and description -->
+        <img id="birdImg" src="https://cdn.download.ams.birds.cornell.edu/api/v1/asset/125519841/320" alt="Bird">
+        <p id="birdText">Pardalote by fir0002 (CC-by-NC)</p>
+
+        <!-- Buttons to swap bird images/text -->
+        <div>
+          <button onclick="changeBird('bird00')">Pardalote</button>
+          <button onclick="changeBird('bird01')">Purple Swamp Hen</button>
+          <button onclick="changeBird('bird02')">White-headed Stilt</button>
+          <button onclick="changeBird('bird03')">Inland Thornbill</button>
+          <button onclick="changeBird('bird04')">Rose Robin</button>
+        </div>
+
+        <!-- Theme toggle button (light/dark) -->
+        <button onclick="toggleTheme()">Toggle Theme</button>
+      </article>
+
+      <!-- ASIDE: Related links -->
+      <aside>
+        <h2>Related Links</h2>
+        <ul>
+          <li><a href="https://www.birdlife.org.au/" target="_blank">BirdLife Australia</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/List_of_birds_of_Australia" target="_blank">Birds of Australia</a></li>
+          <li><a href="https://www.australia.com/en/things-to-do/wildlife/birdwatching.html" target="_blank">Birdwatching in Australia</a></li>
+        </ul>
+      </aside>
+    </main>
+
+    <!-- =====================
+         FOOTER
+         =====================
+         - Displays project info
+    -->
+    <footer>
+      <p>© 2025 Bird Gallery Project | Made with HTML, CSS, and JS</p>
+    </footer>
+
+    <!-- =====================
+         JAVASCRIPT SECTION
+         =====================
+         - Handles bird image swapping
+         - Handles theme toggle
+    -->
+    <script>
+      // Function to swap bird images and captions dynamically
+      function changeBird(bird) {
+        // Object storing image URLs and captions for each bird
+        const birds = {
+          bird00: ["https://cdn.download.ams.birds.cornell.edu/api/v1/asset/125519841/320", "Pardalote by fir0002 (CC-by-NC)"],
+          bird01: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkj8wvmQxUxBWeLqT0QF18hvknzX1PKZlCZQ&s", "Purple Swamp Hen by Toby Hudson (CC-by-SA)"],
+          bird02: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtsH8J-xX8kV3mu6nCA1Zrn4a7vrbVrqZ8dA&s", "White-headed Stilt by JJ Harrison (CC-by-SA)"],
+          bird03: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf8WLGUMZcWcnJ48RLXakmOsJj-HTYzC8fnQ&s", "Inland Thornbill by Peter Jacobs (CC-by-SA)"],
+          bird04: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzl2K1EFpdO0oVP7-_tbFq58ffJ9lI9myPog&s", "Rose Robin by JJ Harrison (CC-by-SA)"]
+        };
+
+        // Update the image and text dynamically
+        document.getElementById("birdImg").src = birds[bird][0];
+        document.getElementById("birdText").textContent = birds[bird][1];
+      }
+
+      // Function to toggle between light and dark mode
+      function toggleTheme() {
+        const body = document.body;
+        // Check current theme and switch
+        if (body.style.backgroundColor === "black") {
+          body.style.backgroundColor = "white";
+          body.style.color = "black";
+        } else {
+          body.style.backgroundColor = "black";
+          body.style.color = "white";
+        }
+      }
+    </script>
+  </body>
+</html>
