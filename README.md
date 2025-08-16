@@ -19,18 +19,6 @@ The website demonstrates the use of semantic HTML structure, CSS styling, and Ja
 - **CSS3** – for styling and layout  
 - **JavaScript (ES6)** – for dynamic interactivity  
 
----
-
-## 📂 Project Structure
-```
-/australian-birds-gallery
-│── index.html          # Main home page
-│── gallery.html        # Gallery page
-│── style.css           # CSS styles
-│── script.js           # JavaScript interactivity
-│── /images             # Bird images
-│── README.md           # Documentation
-```
 
 ---
 
